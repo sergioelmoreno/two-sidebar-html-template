@@ -5,40 +5,54 @@
         <meta name="description" content="Featured Product page">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Featured Product</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="style.css">
         <link rel="author" href="humans.txt">
     </head>
     <body>
 			<header>
-				<div class="logo-contender">
+				<nav>
 					<span class="Logo">
 						Logo
 					</span>
-				</div>
-				<ul class="menu-contender">
-					<li>Item 1</li>
-					<li>Item 2</li>
-					<li>Item 3</li>
-					<li>Item 4</li>
-				</ul>
+					<ul class="menu-contender">
+						<li>
+							<a href="#" title="Item 1">
+								Item 1
+							</a>
+						</li>
+						<li>
+							<a href="#" title="Item 2">
+								Item 2
+							</a>
+						</li>
+						<li>
+							<a href="#" title="Item 3">
+								Item 3
+							</a>
+						</li>
+						<li>
+							<a href="#" title="Item 4">
+								Item 4
+							</a>
+						</li>
+					</ul>
+				</nav>
 			</header>
-			<main role="main">
+			<div role="main" id="main">
 					<!-- Product Sidebars -->
 					<aside>
-						<header>
-							<h3>Categories</h3>
-								<ul>
-								    <li>Item 1</li>
-								    <li>Item 2</li>
-								    <li>Item 3</li>
-								    	<ul>
-								    	    <li>Item 1</li>
-								    			<li>Item 2</li>
-								    			<li>Item 3</li>
-								    	</ul>
-								    <li>Item 4</li>
-								</ul>
-						</header>
+						<h3>Categories</h3>
+							<ul>
+							    <li>Item 1</li>
+							    <li>Item 2</li>
+							    <li>Item 3</li>
+							    	<ul>
+							    	    <li>Item 1</li>
+							    			<li>Item 2</li>
+							    			<li>Item 3</li>
+							    	</ul>
+							    <li>Item 4</li>
+							</ul>
 					</aside>
 					<aside class="pull-left">
 							<h3>Catalogue</h3>
@@ -63,12 +77,11 @@
 										<img src="" alt="Product 4" title="Product 4">
 									</a>
 								</span>
-							</div>
+							</div> <!-- /.thumbnails-contender -->
 					</aside>
 					<!-- Featured Product section -->
 					<section>
 						<article>
-							<header>
 								<h1>
 									Featured Product
 								</h1>
@@ -76,12 +89,11 @@
 									Lorem ipsum dolor
 								</h2>
 								<p class="product-description">
-									Duis autem vel eum iriure dolor in hendrerit in <strong>vulputate velit</strong> esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
+									Duis autem vel eum iriure dolor in hendrerit in <strong>vulputate velit</strong> esse molestie consequat, vel illum dolore <em>eu feugiat nulla</em> facilisis at vero eros et accumsan et iusto odio
 								</p>
 								<div class="thumbnail-contender">
 									<img src="" alt="Featured Product image">
 								</div>
-
 								<!-- Featured Product section --><!-- Featured Product section -->
 								<form role="form" id="contactForm" data-toggle="validator">
 									<h3>
@@ -96,7 +108,7 @@
 									<button type="submit" id="form-submit" class="btn btn-success btn-lg">
 										Send
 									</button>
-									<div id="msgSubmit" class="h3 text-center hidden"></div>
+									<div id="send" class="h3 text-center hidden"></div>
  								</form>
 							</header>
 						</article>
@@ -105,43 +117,37 @@
 			<footer>
 				<h4>Footer</h4>
 				<aside>
-					<header>
-						<h5>
-							Heading
-						</h5>
-						<ul>
-						    <li>Item 1</li>
-						    <li>Item 2</li>
-						    <li>Item 3</li>
-						    <li>Item 4</li>
-						</ul>
-					</header>					
+					<h5>
+						Heading
+					</h5>
+					<ul>
+					    <li>Item 1</li>
+					    <li>Item 2</li>
+					    <li>Item 3</li>
+					    <li>Item 4</li>
+					</ul>
 				</aside>
 				<aside>
-					<header>
-						<h5>
-							Heading
-						</h5>
-						<ul>
-						    <li>Item 1</li>
-						    <li>Item 2</li>
-						    <li>Item 3</li>
-						    <li>Item 4</li>
-						</ul>
-					</header>					
+					<h5>
+						Heading
+					</h5>
+					<ul>
+					    <li>Item 1</li>
+					    <li>Item 2</li>
+					    <li>Item 3</li>
+					    <li>Item 4</li>
+					</ul>
 				</aside>
 				<aside>
-					<header>
-						<h5>
-							Heading
-						</h5>
-						<ul>
-						    <li>Item 1</li>
-						    <li>Item 2</li>
-						    <li>Item 3</li>
-						    <li>Item 4</li>
-						</ul>
-					</header>					
+					<h5>
+						Heading
+					</h5>
+					<ul>
+					    <li>Item 1</li>
+					    <li>Item 2</li>
+					    <li>Item 3</li>
+					    <li>Item 4</li>
+					</ul>
 				</aside>
 			</footer>
 			<script src="js/main.js"></script>
