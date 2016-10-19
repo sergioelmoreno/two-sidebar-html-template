@@ -3,78 +3,87 @@ $light-color:	#f3f3f3;
 $dark-color:	#333;
 $grey-color: #666;
 
-/* Styling Reset */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	vertical-align: baseline;
+@import 'reset';
+
+@mixin flex($atr) {
+	display: -webkit- + $atr;
+	display: $atr;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+
 /* Global */
 body {
   font: 100% $font-stack;
   background-color: $light-color;
-
 }
 header,
 footer {
   background-color: $dark-color;
 }
+em {
+    font-style: italic;
+}
+/* header menu */
 nav {
+	@include flex(flex);
+	border: 0;
+	padding: 0;
 	ul {
+		@include flex(inline-flex);
 		margin: 0;
 		padding: 0;
-		display: inline-flex;
-		align-content: center;
+		align-items: center;
+    width: calc(100% - 220px);
+    list-style: none;
 	}
 	li {
 		margin: 0;
+		padding: 1em;
+		flex: 1;
+    text-align: center;
 	}
 	a {
 		text-decoration: none;
 		color: $light-color;
-		padding: 0.5em;
+	}
+	span {
+    padding: 1em 2em;
+    width: 220px;
+    text-align: center;
+    background-color: $light-color;
+    color: $grey-color;
+    font-weight: 600;
 	}
 }
-em {
-    font-style: italic;
-}
+/* Main section */
 #main {
   background-color: $light-color;
+}
+/* footer section */
+footer {
+	display: block;
+	h4 {
+		font-size: 1.2em;
+		color: $light-color;
+		text-align: center;
+	}
+}
+.grid {
+	@include flex(flex);
+	border: 0;
+	padding: 0;
+
+	aside {
+		flex: 1;
+		h5 {
+			text-align: center;
+			color: $light-color;
+		}
+		ul, ol {
+			width: auto;
+			margin: 0 auto;
+		}
+		ul {
+			list-style-type: disk;
+		}
+	}
 }
