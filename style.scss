@@ -2,6 +2,11 @@ $font-stack: Helvetica, arial, sans-serif;
 $light-color:	#f3f3f3;
 $dark-color:	#333;
 $grey-color: #666;
+$zero-color: #000;
+
+$break-small: 480px;
+$break-portrait: 768px;
+$break-large: 1024px;
 
 @import 'reset';
 
@@ -9,11 +14,39 @@ $grey-color: #666;
 	display: -webkit- + $atr;
 	display: $atr;
 }
+@mixin flex-direction($atr) {
+	-webkit-flex-direction: $atr;
+	-moz-flex-direction: $atr;
+	-ms-flex-direction: $atr;
+	flex-direction: $atr;
+}
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == portrait-screens {
+    @media only screen and (orientation: portrait) and (min-width: $break-small + 1) and (max-width: $break-portrait - 1) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
 
 /* Global */
 body {
   font: 100% $font-stack;
   background-color: $light-color;
+}
+.wrapper {
+	@include flex(flex);
+	@include flex-direction(column);
+	min-height: 100vh;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
 header,
 footer {
@@ -22,8 +55,21 @@ footer {
 em {
     font-style: italic;
 }
-/* header menu */
-nav {
+// Clearfix hack. Source: https://css-tricks.com/snippets/css/clear-fix/
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
+/* Header section */
+header nav {
 	@include flex(flex);
 	border: 0;
 	padding: 0;
@@ -32,7 +78,8 @@ nav {
 		margin: 0;
 		padding: 0;
 		align-items: center;
-    width: calc(100% - 220px);
+		width: 80%;
+    min-width: calc(100% - 220px);
     list-style: none;
 	}
 	li {
@@ -47,7 +94,8 @@ nav {
 	}
 	span {
     padding: 1em 2em;
-    width: 220px;
+    min-width: 220px;
+    width: 20%;
     text-align: center;
     background-color: $light-color;
     color: $grey-color;
@@ -56,15 +104,74 @@ nav {
 }
 /* Main section */
 #main {
+	@include flex(flex);
   background-color: $light-color;
+  padding: 50px 0 25px 0;
+  section {
+		padding: 0 15px;
+	}
+	aside {
+		.thumbnails-contender {
+			@include flex(inline-flex);
+			flex-wrap: wrap;
+			max-width: 340px;
+			span {
+				@include flex(flex);
+				
+				max-width: 134px;
+				height: 100%;
+				padding-bottom: 79%;
+				width: 100%;
+				margin: 0 auto;
+				background-color: $grey-color;
+				color: $light-color;
+			}
+		}
+		.aside-menu {
+			@include flex(flex);
+			@include flex-direction(column);
+			li {
+				cursor: pointer;
+				padding: 1em 0 1em 1em;
+				background-color: $dark-color;
+				color: $light-color;
+				list-style: none;
+				ul {
+					padding-top: 1em;
+					background-clip: padding-box;
+					li {
+						background-color: $grey-color;
+						margin-left: -1em; 
+					}
+				}
+				&.active {
+					padding-bottom: 0;
+				}
+				&:hover {
+					background-color: #b6b6b6;
+					color: $zero-color;
+				}
+			}
+		}
+		&:nth-child(1) {
+			padding: 0 2em;
+			min-width: 220px;
+		}
+		&:nth-child(2) {
+			padding: 0 20px;
+		}
+	}
 }
-/* footer section */
+
+/* Footer section */
 footer {
 	display: block;
+	flex: 1;
 	h4 {
 		font-size: 1.2em;
 		color: $light-color;
 		text-align: center;
+		margin: 5px 0 15px 0;
 	}
 }
 .grid {
@@ -77,10 +184,19 @@ footer {
 		h5 {
 			text-align: center;
 			color: $light-color;
+			margin-bottom: 15px;
 		}
 		ul, ol {
-			width: auto;
+			color: $light-color;
 			margin: 0 auto;
+			@include flex(flex);
+			@include flex-direction(column);
+			align-items: center;
+			align-content: center;
+			li {
+				margin-bottom: 20px;
+				padding: 5px 10px;
+			}
 		}
 		ul {
 			list-style-type: disk;
