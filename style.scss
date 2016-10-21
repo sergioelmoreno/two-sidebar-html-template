@@ -1,13 +1,33 @@
+// Variables
 $font-stack: Helvetica, arial, sans-serif;
 $light-color:	#f3f3f3;
 $dark-color:	#333;
 $grey-color: #666;
 $zero-color: #000;
 
-// Variables
 $break-small: 480px;
 $break-portrait: 768px;
 $break-large: 1024px;
+$break-xlarge: 1280px;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @if $media == portrait {
+    @media only screen and (max-width: $break-portrait) { @content; }
+  }
+  @else if $media == portrait-screens {
+    @media only screen and (orientation: portrait) and (min-width: $break-small + 1) and (max-width: $break-portrait - 1) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
 
 // Reset
 @import 'reset';
@@ -32,25 +52,16 @@ $break-large: 1024px;
   -ms-flex:  $values;
   flex:  $values;
 }
-@mixin respond-to($media) {
-  @if $media == handhelds {
-    @media only screen and (max-width: $break-small) { @content; }
-  }
-  @else if $media == portrait-screens {
-    @media only screen and (orientation: portrait) and (min-width: $break-small + 1) and (max-width: $break-portrait - 1) { @content; }
-  }
-  @else if $media == medium-screens {
-    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
-  }
-  @else if $media == wide-screens {
-    @media only screen and (min-width: $break-large) { @content; }
-  }
-}
 
 /* Global */
 body {
   font: 100% $font-stack;
   background-color: $light-color;
+
+  // Responsive behavior
+	@include respond-to(portrait) {
+		font-size: 1.2em;
+	}
 }
 .wrapper {
 	@include flexbox(flex);
@@ -68,6 +79,12 @@ em {
     font-style: italic;
 }
 h1, h3 { text-align: center; }
+input, button {
+	// Responsive behavior
+	@include respond-to(portrait) {
+		font-size: 1em;
+	}
+}
 // Clearfix hack. Source: https://css-tricks.com/snippets/css/clear-fix/
 .clearfix:after {
 	visibility: hidden;
@@ -85,29 +102,12 @@ header {
 /* Header section */
 	width: 100%;
 	display: block;
+
 	nav {
 		@include flexbox(flex);
 		border: 0;
 		padding: 0;
-		ul {
-			@include flexbox(inline-flex);
-			margin: 0;
-			padding: 0;
-			align-items: center;
-			width: 80%;
-	    min-width: calc(100% - 220px);
-	    list-style: none;
-		}
-		li {
-			margin: 0;
-			padding: 1em;
-			flex: 1;
-	    text-align: center;
-		}
-		a {
-			text-decoration: none;
-			color: $light-color;
-		}
+	
 		span {
 	    padding: 1em 2em;
 	    min-width: 220px;
@@ -116,6 +116,42 @@ header {
 	    background-color: $light-color;
 	    color: $grey-color;
 	    font-weight: 600;
+
+	    // Responsive behavior
+			@include respond-to(portrait) {
+				width: 100%;
+			}
+		}
+		
+		ul {
+			@include flexbox(inline-flex);
+			margin: 0;
+			padding: 0;
+			align-items: center;
+			width: 80%;
+	    min-width: calc(100% - 220px);
+	    list-style: none;
+		
+			li {
+				margin: 0;
+				padding: 1em;
+				flex: 1;
+		    text-align: center;
+			}
+		
+			a {
+				text-decoration: none;
+				color: $light-color;
+			}
+			// Responsive behavior
+			@include respond-to(portrait) {
+				width: 100%;
+			}
+		}
+		
+		// Responsive behavior
+		@include respond-to(portrait) {
+			@include flex-direction(column);
 		}
 	}
 }
@@ -125,7 +161,12 @@ header {
 	@include flexbox(flex);
   background-color: $light-color;
 	padding: 2em 0 1em 0;
-
+	
+	// Responsive behavior
+	@include respond-to(portrait) {
+		flex-direction: column;
+	}
+	
 	aside {
 	/* Asides */
 
@@ -285,6 +326,13 @@ header {
 				color: white;
 				border: 0;
 				font-weight: bold;
+			}
+		}
+		.product-img-contender, form {
+			// Responsive behavior
+			@include respond-to(portrait) {
+				display: block;
+				width: 100%;
 			}
 		}
 	}

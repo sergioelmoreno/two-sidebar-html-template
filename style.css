@@ -59,6 +59,11 @@ body {
   font: 100% Helvetica, arial, sans-serif;
   background-color: #f3f3f3;
 }
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 1.2em;
+  }
+}
 
 .wrapper {
   display: -webkit-flex;
@@ -86,6 +91,12 @@ em {
 
 h1, h3 {
   text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  input, button {
+    font-size: 1em;
+  }
 }
 
 .clearfix:after {
@@ -122,6 +133,20 @@ header nav {
   border: 0;
   padding: 0;
 }
+header nav span {
+  padding: 1em 2em;
+  min-width: 220px;
+  width: 20%;
+  text-align: center;
+  background-color: #f3f3f3;
+  color: #666;
+  font-weight: 600;
+}
+@media only screen and (max-width: 768px) {
+  header nav span {
+    width: 100%;
+  }
+}
 header nav ul {
   display: -webkit-inline-flex;
   display: -moz-inline-flex;
@@ -134,24 +159,28 @@ header nav ul {
   min-width: calc(100% - 220px);
   list-style: none;
 }
-header nav li {
+header nav ul li {
   margin: 0;
   padding: 1em;
   flex: 1;
   text-align: center;
 }
-header nav a {
+header nav ul a {
   text-decoration: none;
   color: #f3f3f3;
 }
-header nav span {
-  padding: 1em 2em;
-  min-width: 220px;
-  width: 20%;
-  text-align: center;
-  background-color: #f3f3f3;
-  color: #666;
-  font-weight: 600;
+@media only screen and (max-width: 768px) {
+  header nav ul {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  header nav {
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
 }
 
 #main {
@@ -162,6 +191,11 @@ header nav span {
   display: flex;
   background-color: #f3f3f3;
   padding: 2em 0 1em 0;
+}
+@media only screen and (max-width: 768px) {
+  #main {
+    flex-direction: column;
+  }
 }
 #main aside {
   /* Asides */
@@ -348,6 +382,12 @@ header nav span {
   color: white;
   border: 0;
   font-weight: bold;
+}
+@media only screen and (max-width: 768px) {
+  #main section .product-img-contender, #main section form {
+    display: block;
+    width: 100%;
+  }
 }
 
 /* Footer section */
