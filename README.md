@@ -2,6 +2,6 @@
 
 *HTML+SCSS template*
 
-Include example of send quest form in AJAX (jQuery)
+Example of Request send form in AJAX (jQuery) included.
 
 :octocat:
