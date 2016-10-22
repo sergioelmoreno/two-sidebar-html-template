@@ -1,3 +1,7 @@
 # Two Sidebars html5 Template
 
-*HTML+CSS template*
+*HTML+SCSS template*
+
+Include example of send quest form in AJAX (jQuery)
+
+:octocat:
