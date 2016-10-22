@@ -1,0 +1,64 @@
+// Mixins
+@mixin transition($axis...) {
+	-webkit-transition: -webkit- + $axis;
+	-moz-transition: -moz- + $axis;
+	transition: $axis;
+}
+@mixin transform($axis, $values) {
+	-webkit-transform: unquote('translate#{$axis}(#{$values})');
+	-moz-transform: unquote('translate#{$axis}(#{$values})');
+	transform: unquote('translate#{$axis}+(#{$values})');
+}
+
+
+/* 
+ * Effect: reveal, push out
+ * 
+ * Warning 
+ * Pseudo-elements transform only full supported on Firefox and Chrome
+ * https://developer.mozilla.org/en/docs/Web/CSS/::before#Browser_compatibility
+ */
+.reveal-left  {
+	position: relative;
+	z-index: 1;
+	li {
+		a {
+		overflow: hidden;
+		display: block;
+		position: relative;
+
+			span {
+				display: block;
+				@include transition(transform 0.3s, opacity 0.3s);
+			}
+
+			&::before {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 0;
+				width: 100%;
+				height: 100%;
+				color: white;
+				content: attr(data-hover);
+				@include transition(transform 0.3s, opacity 0.3s);
+				-webkit-transform: translateX(-25%);
+				opacity: 0;
+			}
+			&:hover span,
+			&:focus span {
+				@include transform(X, 100%);
+			}
+			&:hover::before,
+			&:focus::before {
+				@include transform(X, 0%);
+				opacity: 1;
+				color: green;
+			}
+		}
+	}
+	li ul li a:hover::before,
+	li ul li a:focus::before {
+		color: black;
+	}
+}

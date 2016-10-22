@@ -1,6 +1,7 @@
 /* Styling Reset */
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h1,
+#main section h2, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -89,7 +90,7 @@ em {
   font-style: italic;
 }
 
-h1, h3 {
+h1, #main section h2, h3 {
   text-align: center;
 }
 
@@ -133,17 +134,17 @@ header nav {
   border: 0;
   padding: 0;
 }
-header nav span {
+header nav .logo-contender {
   padding: 1em 2em;
   min-width: 220px;
   width: 20%;
   text-align: center;
   background-color: #f3f3f3;
   color: #666;
-  font-weight: 600;
+  font-weight: bold;
 }
 @media only screen and (max-width: 768px) {
-  header nav span {
+  header nav .logo-contender {
     width: 100%;
   }
 }
@@ -152,9 +153,13 @@ header nav ul {
   display: -moz-inline-flex;
   display: -ms-inline-flex;
   display: inline-flex;
+  -webkit-box-align-items: center;
+  -moz-box-align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
   margin: 0;
   padding: 0;
-  align-items: center;
   width: 80%;
   min-width: calc(100% - 220px);
   list-style: none;
@@ -200,6 +205,12 @@ header nav ul a {
 #main aside {
   /* Asides */
 }
+#main aside h3 {
+  color: #666;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
 #main aside .aside-menu {
   /* Aside menu */
   display: -webkit-flex;
@@ -210,6 +221,9 @@ header nav ul a {
   -moz-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+}
+#main aside .aside-menu h3 {
+  text-align: left;
 }
 #main aside .aside-menu li {
   cursor: pointer;
@@ -226,12 +240,10 @@ header nav ul a {
   background-color: #666;
   margin-left: -1em;
 }
-#main aside .aside-menu li.active {
-  padding-bottom: 0;
-}
-#main aside .aside-menu li:hover {
-  background-color: #b6b6b6;
-  color: #000;
+#main aside .aside-menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 #main aside:nth-child(1) {
   padding: 0 2em;
@@ -239,6 +251,16 @@ header nav ul a {
 }
 #main aside:nth-child(2) {
   padding: 0 20px;
+}
+@media only screen and (min-width: 481px) and (max-width: 1023px) {
+  #main aside:nth-child(2) {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+  #main aside:nth-child(2) {
+    width: 100%;
+  }
 }
 #main .thumbnails-contender {
   /* Thumbnails contender */
@@ -263,11 +285,31 @@ header nav ul a {
   color: #f3f3f3;
   position: relative;
 }
+@media only screen and (min-width: 481px) and (max-width: 1023px) {
+  #main .thumbnails-contender span {
+    width: 90px;
+    height: 121px;
+  }
+}
+#main .thumbnails-contender span a img {
+  width: 134px;
+  height: 180px;
+}
+@media only screen and (min-width: 481px) and (max-width: 1023px) {
+  #main .thumbnails-contender span a img {
+    width: 90px;
+    height: 121px;
+  }
+}
 #main .thumbnails-contender span a .img-hover {
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;
   display: flex;
+  -webkit-box-align-items: center;
+  -moz-box-align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
   align-items: center;
   position: absolute;
   top: 0;
@@ -285,6 +327,16 @@ header nav ul a {
   padding: 0 1em;
   float: none;
   margin: 0 auto;
+}
+#main section h1, #main section h2 {
+  color: #666;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+#main section h2 {
+  font-size: 1em;
+  text-align: left;
 }
 #main section .product-img-contender {
   /* Product image */
@@ -314,6 +366,10 @@ header nav ul a {
   display: -moz-flex;
   display: -ms-flex;
   display: flex;
+  -webkit-box-align-items: center;
+  -moz-box-align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
   align-items: center;
 }
 #main section .product-img-contender figcaption span {
@@ -337,6 +393,10 @@ header nav ul a {
   -moz-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align-items: flex-end;
+  -moz-box-align-items: flex-end;
+  -webkit-align-items: flex-end;
+  -ms-align-items: flex-end;
   align-items: flex-end;
 }
 #main section form > * {
@@ -347,7 +407,8 @@ header nav ul a {
   flex: 1;
 }
 #main section form h3 {
-  padding: 0 0 1em 0;
+  font-size: 1.2em;
+  margin-bottom: 1em;
   width: 100%;
 }
 #main section form .form-group {
@@ -378,7 +439,7 @@ header nav ul a {
   display: block;
   float: right;
   padding: 1em 2em;
-  background-color: #000;
+  background-color: black;
   color: white;
   border: 0;
   font-weight: bold;
@@ -386,6 +447,16 @@ header nav ul a {
 @media only screen and (max-width: 768px) {
   #main section .product-img-contender, #main section form {
     display: block;
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 481px) and (max-width: 1023px) {
+  #main section .product-img-contender, #main section form {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+  #main section .product-img-contender, #main section form {
     width: 100%;
   }
 }
@@ -423,7 +494,15 @@ footer .grid aside ul, footer .grid aside ol {
   -moz-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align-items: center;
+  -moz-box-align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
   align-items: center;
+  -webkit-box-align-content: center;
+  -moz-box-align-content: center;
+  -webkit-align-content: center;
+  -ms-align-content: center;
   align-content: center;
 }
 footer .grid aside ul li, footer .grid aside ol li {
@@ -438,6 +517,60 @@ footer h4 {
   color: #f3f3f3;
   text-align: center;
   margin: 5px 0 15px 0;
+}
+
+/* 
+ * Effect: reveal, push out
+ * 
+ * Warning 
+ * Pseudo-elements transform only full supported on Firefox and Chrome
+ * https://developer.mozilla.org/en/docs/Web/CSS/::before#Browser_compatibility
+ */
+.reveal-left {
+  position: relative;
+  z-index: 1;
+}
+.reveal-left li a {
+  overflow: hidden;
+  display: block;
+  position: relative;
+}
+.reveal-left li a span {
+  display: block;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.reveal-left li a::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  content: attr(data-hover);
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  -webkit-transform: translateX(-25%);
+  opacity: 0;
+}
+.reveal-left li a:hover span, .reveal-left li a:focus span {
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  transform: translateX+(100%);
+}
+.reveal-left li a:hover::before, .reveal-left li a:focus::before {
+  -webkit-transform: translateX(0%);
+  -moz-transform: translateX(0%);
+  transform: translateX+(0%);
+  opacity: 1;
+  color: green;
+}
+.reveal-left li ul li a:hover::before,
+.reveal-left li ul li a:focus::before {
+  color: black;
 }
 
 /*# sourceMappingURL=style.css.map */

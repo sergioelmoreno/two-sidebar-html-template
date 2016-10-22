@@ -3,7 +3,7 @@ $font-stack: Helvetica, arial, sans-serif;
 $light-color:	#f3f3f3;
 $dark-color:	#333;
 $grey-color: #666;
-$zero-color: #000;
+$zero-color: black;
 
 $break-small: 480px;
 $break-portrait: 768px;
@@ -24,7 +24,10 @@ $break-xlarge: 1280px;
     @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
   }
   @else if $media == wide-screens {
-    @media only screen and (min-width: $break-large) { @content; }
+    @media only screen and (min-width: $break-large) and (max-width: $break-xlarge - 1) { @content; }
+  }
+  @else if $media == ultra-screens {
+    @media only screen and (min-width: $break-xlarge) { @content; }
   }
 }
 
@@ -51,6 +54,20 @@ $break-xlarge: 1280px;
   -webkit-flex:  $values;
   -ms-flex:  $values;
   flex:  $values;
+}
+@mixin align-items($values) {
+  -webkit-box-align-items: $values;
+  -moz-box-align-items:  $values;
+  -webkit-align-items:  $values;
+  -ms-align-items:  $values;
+  align-items:  $values;
+}
+@mixin align-content($values) {
+  -webkit-box-align-content: $values;
+  -moz-box-align-content:  $values;
+  -webkit-align-content:  $values;
+  -ms-align-content:  $values;
+  align-content:  $values;
 }
 
 /* Global */
@@ -108,14 +125,14 @@ header {
 		border: 0;
 		padding: 0;
 	
-		span {
+		.logo-contender {
 	    padding: 1em 2em;
 	    min-width: 220px;
 	    width: 20%;
 	    text-align: center;
 	    background-color: $light-color;
 	    color: $grey-color;
-	    font-weight: 600;
+	    font-weight: bold;
 
 	    // Responsive behavior
 			@include respond-to(portrait) {
@@ -125,9 +142,9 @@ header {
 		
 		ul {
 			@include flexbox(inline-flex);
+			@include align-items(center);
 			margin: 0;
 			padding: 0;
-			align-items: center;
 			width: 80%;
 	    min-width: calc(100% - 220px);
 	    list-style: none;
@@ -169,33 +186,46 @@ header {
 	
 	aside {
 	/* Asides */
+		h3 {
+			color: $grey-color;
+			font-weight: bold;
+			font-size: 1.5em;
+			margin-bottom: 1em;
+		}
 
 		.aside-menu {
 			/* Aside menu */
 			@include flexbox(flex);
 			@include flex-direction(column);
+			
+			h3 {
+				text-align: left;
+			}
+
 			li {
 				cursor: pointer;
 				padding: 1em 0 1em 1em;
 				background-color: $dark-color;
 				color: $light-color;
 				list-style: none;
+			
 				ul {
 					padding-top: 1em;
 					background-clip: padding-box;
+			
 					li {
 						background-color: $grey-color;
 						margin-left: -1em; 
 					}
 				}
-				&.active {
-					padding-bottom: 0;
-				}
-				&:hover {
-					background-color: #b6b6b6;
-					color: $zero-color;
+			
+				a {
+					color: white;
+					text-decoration: none;
+					font-weight: bold;
 				}
 			}
+
 		}
 		&:nth-child(1) {
 			padding: 0 2em;
@@ -203,6 +233,14 @@ header {
 		}
 		&:nth-child(2) {
 			padding: 0 20px;
+
+			// Responsive behavior
+			@include respond-to(medium-screens) {
+				width: 100%;
+			}
+			@include respond-to(wide-screens) {
+				width: 100%;
+			}
 		}
 	}
 
@@ -223,19 +261,39 @@ header {
 			color: $light-color;
 			position: relative;
 
-			a .img-hover {
-				@include flexbox(flex);
-				align-items: center;
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				
-				p {
-					text-align: center;
+			// Responsibe behavior
+			@include respond-to(medium-screens) {
+				width: 90px;
+				height: 121px;
+			}
+
+			a {
+
+				img {
+					width: 134px;
+					height: 180px;
+
+					// Responsibe behavior
+					@include respond-to(medium-screens) {
+						width: 90px;
+						height: 121px;
+					}
+				}
+
+				.img-hover {
+					@include flexbox(flex);
+					@include align-items(center);
+					position: absolute;
+					top: 0;
+					left: 0;
 					width: 100%;
-					color: white;
+					height: 100%;
+					
+					p {
+						text-align: center;
+						width: 100%;
+						color: white;
+					}
 				}
 			}
 		}
@@ -247,6 +305,19 @@ header {
 		float: none;
 		margin: 0 auto;
 		
+		h1 {
+			color: $grey-color;
+			font-weight: bold;
+			font-size: 1.5em;
+			margin-bottom: 1em;
+		}
+
+		h2 {
+			@extend h1;
+			font-size: 1em;
+			text-align: left;
+
+		}
 		.product-img-contender {
 		/* Product image */
 			padding: 2em 1em 0 1em;
@@ -271,7 +342,7 @@ header {
 				width: 100%;
 				height: 100%;
 				@include flexbox(flex);
-				align-items: center;
+				@include align-items(center);
 				span {
 					@include flex(1);
 					text-align: center;
@@ -286,17 +357,17 @@ header {
 			height: 100%;
 			@include flexbox(inline-flex);
 			@include flex-direction(column);
-			align-items: flex-end;
+			@include align-items(flex-end);
 
 			&> * {
 				@include flex(1);
 			}
 
 			h3 {
-				padding: 0 0 1em 0;
+				font-size: 1.2em;
+				margin-bottom: 1em;
 				width: 100%;
 			}
-
 			.form-group {
 				@include flexbox(flex);
 				@include flex-direction(column);
@@ -328,13 +399,21 @@ header {
 				font-weight: bold;
 			}
 		}
+
 		.product-img-contender, form {
 			// Responsive behavior
 			@include respond-to(portrait) {
 				display: block;
 				width: 100%;
 			}
+			@include respond-to(medium-screens) {
+				width: 100%;
+			}
+			@include respond-to(wide-screens) {
+				width: 100%;
+			}
 		}
+		
 	}
 }
 
@@ -345,28 +424,34 @@ footer {
 
 	.grid {
 	/* Footer grid */
+		
 		@include flexbox(flex);
 		border: 0;
 		padding: 0;
+		
 		aside {
 			flex: 1;
+		
 			h5 {
 				text-align: center;
 				color: $light-color;
 				margin-bottom: 15px;
 			}
+		
 			ul, ol {
 				color: $light-color;
 				margin: 0 auto;
 				@include flexbox(flex);
 				@include flex-direction(column);
-				align-items: center;
-				align-content: center;
+				@include align-items(center);
+				@include align-content(center);
+
 				li {
 					margin-bottom: 20px;
 					padding: 5px 10px;
 				}
 			}
+		
 			ul {
 				list-style-type: disk;
 			}
@@ -380,3 +465,6 @@ footer {
 		margin: 5px 0 15px 0;
 	}
 }
+
+// Animations
+@import 'animations';
