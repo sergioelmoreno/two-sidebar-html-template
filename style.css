@@ -444,6 +444,21 @@ header nav ul a {
   border: 0;
   font-weight: bold;
 }
+#main section form #send {
+  display: none;
+  border: 1px dotted green;
+  padding: 1em;
+  width: 100%;
+  color: green;
+}
+#main section form #send.active {
+  display: block;
+}
+#main section form #send.error {
+  display: block;
+  border-color: red;
+  color: red;
+}
 @media only screen and (max-width: 768px) {
   #main section .product-img-contender, #main section form {
     display: block;

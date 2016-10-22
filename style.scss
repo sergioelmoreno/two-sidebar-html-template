@@ -397,6 +397,21 @@ header {
 				color: white;
 				border: 0;
 				font-weight: bold;
+
+			}
+			
+			#send { 
+				display: none;
+				border: 1px dotted green;
+				padding: 1em;
+				width: 100%;
+				color: green;
+			}
+			#send.active { display: block; }
+			#send.error {
+				display: block;
+				border-color: red;
+				color: red;
 			}
 		}
 
